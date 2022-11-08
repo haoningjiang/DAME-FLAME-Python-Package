@@ -177,10 +177,11 @@ def flame_generic(df_all, treatment_column_name, weight_array,
         df_holdout_array = list()
         df_holdout_array.append(df_holdout)
 
-
-    h = 1 # The iteration number
+    #change1 
+    h = 0 # The iteration number
 
     if verbose == 3:
+        return_pe.append(0)
         flame_dame_helpers.verbose_output(h, len(MG_units),
             df_unmatched[treatment_column_name].sum(), len(df_unmatched),
             orig_len_df_all, orig_tot_treated, 0, orig_len_df_all, set())
@@ -235,7 +236,9 @@ def flame_generic(df_all, treatment_column_name, weight_array,
         # Check not equal to false because if it's turned off, value is False
         # but if it's turned on, value is a float.
         # Can't check prev_pe on first iteration so check not first iter
-        if early_stops.pe != False and h != 1 and prev_pe != 0:
+
+        #change1
+        if early_stops.pe != False and h != 0 and prev_pe != 0:
             if (pe - prev_pe)/prev_pe >= (1 - early_stops.pe):
                 print((orig_len_df_all - len(df_unmatched)), "units matched. "\
                         "We stopped matching with a pe of ", pe, 
